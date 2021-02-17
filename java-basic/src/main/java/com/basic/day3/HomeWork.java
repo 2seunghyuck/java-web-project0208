@@ -9,6 +9,7 @@ public class HomeWork {
 
     boolean run = true;
     int members = 0;
+
     while(run) {
       String[][] info;
       System.out.println("1.회원수 | 2.정보입력 | 3.회원리스트 | 4.종료");
@@ -25,7 +26,6 @@ public class HomeWork {
 
   public static String[][] inputInfo(String[][] info) {
     Scanner sc = new Scanner(System.in);
-
     for(int i=0; i<info.length; i++) {
       System.out.println("이름을 입력하세요 : ");
       String name = sc.next();
@@ -36,6 +36,7 @@ public class HomeWork {
     }
     return info;
   }
+
   public static void memberInfo(String[][] info) {
     System.out.println("***회원정보***");
     for(int i=0; i<info.length; i++) {
