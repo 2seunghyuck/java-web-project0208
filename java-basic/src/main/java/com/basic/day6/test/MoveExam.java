@@ -13,7 +13,7 @@ public class MoveExam {
     for (int i = 0; i< arr.length; i++) {
       System.out.println(arr[i]);
       arr[i].move(x, y);
-      (Shape(arr[i]).draw());
+      ((Shape)arr[i]).draw();
     }
   }
 }
