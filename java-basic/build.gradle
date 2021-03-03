@@ -27,6 +27,7 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
+    compile 'com.oracle:ojdbc6:11.2.0.3'
 }
 
 application {
