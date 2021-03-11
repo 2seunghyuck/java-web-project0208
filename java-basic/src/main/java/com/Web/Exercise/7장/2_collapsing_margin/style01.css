@@ -1,0 +1,16 @@
+/* 형제 지간에 발생하는 마진 병합 현상 */
+#first {
+    width: 100%;
+    height: 200px;
+    background-color: yellow;
+
+    margin-bottom: 100px;
+}
+
+#second {
+    width: 100%;
+    height: 200px;
+    background-color: blue;
+
+    margin-top: 50px;
+}

@@ -7,13 +7,7 @@ public class Answer0302_1 {
   public String solution(String[] participant, String[] completion) {
     Arrays.sort(participant);
     Arrays.sort(completion);
-    for(String s : participant) {
-      System.out.print(s+",");
-    }
-    System.out.println("=-----------");
-    for(String s : completion) {
-      System.out.print(s+",");
-    }
+
     System.out.println("-----------------");
     int i;
     for(i=0; i<completion.length; i++) {

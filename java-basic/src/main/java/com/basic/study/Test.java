@@ -1,24 +1,23 @@
 package com.basic.study;
 
-public class Test {
-
-  public  String solution(String[] participant, String[] completion) {
-
-    int index=0;
-    int tmp=0;
-    for(int i=0; i<participant.length; i++) {
-      tmp += i;
+public class Test{
+  public int[] solution(int[] arr) {
+    int[] answer = new int[arr.length-1];
+    if(arr.length==1) return new int[]{-1};
+    int tmp = 0;
+    for(int i = 0; i < arr.length ; i++)
+      if(arr[i]<arr[tmp])
+        tmp = i;
+    int count = 0;
+    for(int i = 0; i < arr.length ; i++) {
+      if(i==tmp) continue;
+      answer[count++] = arr[i];
     }
-    for(int i=0; i<participant.length; i++) {
-      for(int j=0; j<completion.length; j++) {
-        if(participant[i].equals(completion[j]))  index += i;
-      }
-    }
-    for(int i=0; i<participant.length; i++) {
-      for(int j=i+1; j<participant.length;j++) {
-        if(participant[i].equals(participant[j])) tmp+=i;
-      }
-    }
-    return participant[tmp-index];
+    return answer;
+  }
+  public static void main(String[] args) {
+    Test t = new Test();
+    int[] arr = {4,3,2,1};
+    System.out.println(t.solution(arr));
   }
 }

@@ -1,0 +1,17 @@
+/* id > class > type */
+/*
+    /* HTML과 마찬가지로 주석 안에 주석을 넣을 수 없습니다 */
+ */
+#color {
+    color: blue;
+}
+
+/* class > type */
+.color {
+    color: red;
+}
+
+/* type */
+h3 {
+    color: green;
+}

@@ -1,0 +1,16 @@
+#left {
+    float: left;
+
+    width: 200px;
+    height: 400px;
+    background-color: yellow;
+}
+
+
+#right {
+    float: right;
+
+    width: 200px;
+    height: 400px;
+    background-color: blue;
+}
