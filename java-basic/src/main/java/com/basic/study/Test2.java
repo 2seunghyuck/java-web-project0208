@@ -1,31 +1,36 @@
 package com.basic.study;
 
-public class Test2{
-  public int solution(int n) {
-    int[] arr = new int[n + 1];
-    int c = 0;
-    for (int i = 2; i <= n; i++) {
-      arr[i] = i;
-    }
+import java.util.ArrayList;
+import java.util.List;
 
-    int Sqrt = (int) Math.sqrt(n);
-    for (int i = 2; i <= Sqrt; i++) {
-      if (arr[i] == 0) {
-        continue;
-      }
-      for (int j = i + i; j <= n; j += i) {
-        arr[j] = 0;
+public class Test2{
+  public int solution(int[] nums) {
+
+    List<Integer> list = new ArrayList<>();
+    int num =0;
+    for(int i=0; i<nums.length; i++) {
+      for(int j=i+1; j< nums.length; j++) {
+        for(int k=j+1; k<nums.length; k++) {
+          num = nums[i]+nums[j]+nums[k];
+          list.add(num);
+        }
       }
     }
-    for (int i = 2; i <= n; i++) {
-      if (arr[i] != 0) {
-        c++;
+    int result = 0;
+
+    for(int sosu : list) {
+      int count =0;
+      for(int i=1; i <= sosu; i++) {
+        if (sosu % i == 0) count++;
       }
+      if(count == 2) result++;
     }
-    return c;
+    return result;
   }
+
   public static void main(String[] args) {
     Test2 t = new Test2();
-    System.out.println(t.solution(10));
+    int[] nums = {1,2,7,6,4,9,30,44};
+    System.out.println(t.solution(nums));
   }
 }
