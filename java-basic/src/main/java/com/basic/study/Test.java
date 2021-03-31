@@ -1,52 +1,63 @@
 package com.basic.study;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Test {
-  public String solution(int[] numbers, String hand) {
+  public int[] solution(int N, int[] stages) {
+    int[] answer = new int[N];
+    List<Integer> list = new ArrayList<>();
+    float[] count = new float[N];
+    int tmp = stages.length;
 
-    StringBuffer sb = new StringBuffer();
-    int leftIndex = 10;
-    int rightIndex = 12;
+    for(int i=0; i<N; i++) {
+      answer[i] = i+1;
+      count[i] =0;
+      list.add(i+1);
+    }
 
-    for(int i : numbers) {
-      int num = i==0?11:i;
+    Arrays.sort(stages);
 
-      if(num == 1 || num == 4 || num == 7) {
-        sb.append("L");
-        leftIndex = num;
-      } else if(num == 3 || num == 6 || num == 9) {
-        sb.append("R");
-        rightIndex = num;
-      } else {
-        int leftLength = Math.abs((leftIndex-1)/3-(num-1)/3) ;
-        leftLength +=  (leftIndex-num)%3==0?0:1;
-        int rightLength = Math.abs((rightIndex-2)/3-(num-1)/3) ;
-        rightLength += (rightIndex-num)%3==0?0:1;
-
-        if(leftLength > rightLength) {
-          sb.append("R");
-          rightIndex = num;
-        } else if(leftLength < rightLength) {
-          sb.append("L");
-          leftIndex = num;
-        } else {
-          if(hand.equals("right")) {
-            sb.append("R");
-            rightIndex = num;
-          } else {
-            sb.append("L");
-            leftIndex = num;
+    for(int i=0; i<stages.length; i++) {
+      if(list.contains(stages[i])) count[stages[i]-1]++;
+    }
+    for(int i=0; i<count.length; i++) {
+      tmp -= count[i];
+      count[i] = count[i]/(tmp+count[i]);
+      System.out.println(tmp);
+    }
+    float rankA =0;
+    int rankB =0;
+    int eq =0;
+    for(int i=0; i<count.length; i++) {
+      for(int j=i; j<count.length; j++) {
+        if(count[i]>count[j]) continue;
+        else if(count[i]<count[j]) {
+          rankA = count[i];
+          count[i] = count[j];
+          count[j] = rankA;
+          rankB = answer[i];
+          answer[i] = answer[j];
+          answer[j] = rankB;
+        }
+        else if(count[i]==count[j]) {
+          if(answer[i]>answer[j]) {
+            eq = answer[j];
+            answer[j] = answer[i];
+            answer[i] = eq;
           }
         }
       }
     }
-
-    return sb.toString();
+    return answer;
   }
 
   public static void main(String[] args) {
     Test t = new Test();
-    int[] numbers = {1,2,4,6,2,8,4,3,7,3};
-    String hand = "right";
-    System.out.println(t.solution(numbers, hand));
+    int N = 5;
+    int[] stages = {2, 1, 2, 6, 2, 4, 3, 3};
+
+    System.out.println(t.solution(N, stages));
   }
 }
