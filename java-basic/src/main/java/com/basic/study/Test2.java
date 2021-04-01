@@ -2,16 +2,25 @@ package com.basic.study;
 
 public class Test2{
   public String[] solution(int n, int[] arr1, int[] arr2) {
-    String binaryString;
+    String binaryString = null;
+    String[] answer = new String[n];
     for(int i=0; i<arr1.length;i++) {
-      binaryString = Integer.toBinaryString(arr1[i]);
-      System.out.println(binaryString);
+      StringBuffer sb = new StringBuffer();
+
+      String binaryString1 = Integer.toBinaryString(arr1[i]);
+      String binaryString2 = Integer.toBinaryString(arr2[i]);
+
+      while(binaryString1.length() != n) binaryString1 = "0" + binaryString1;
+      while(binaryString2.length() != n) binaryString2 = "0" + binaryString2;
+
+      for(int j=0; j<n; j++) {
+        int tmp = (Character.getNumericValue(binaryString1.charAt(j)) + Character.getNumericValue(binaryString2.charAt(j)));
+        String s = Integer.toString(tmp);
+        if(!s.equals("0")) sb.append("#");
+        else sb.append(" ");
+      }
+      answer[i] = sb.toString();
     }
-
-    // bit연산하는거 해보면 될듯 ?
-
-    String[] answer = {};
-
     return answer;
   }
 
