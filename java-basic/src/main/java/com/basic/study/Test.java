@@ -16,7 +16,6 @@ public class Test {
       count[i] =0;
       list.add(i+1);
     }
-
     Arrays.sort(stages);
 
     for(int i=0; i<stages.length; i++) {
@@ -27,9 +26,11 @@ public class Test {
       count[i] = count[i]/(tmp+count[i]);
       System.out.println(tmp);
     }
+
     float rankA =0;
     int rankB =0;
     int eq =0;
+
     for(int i=0; i<count.length; i++) {
       for(int j=i; j<count.length; j++) {
         if(count[i]>count[j]) continue;
@@ -42,11 +43,6 @@ public class Test {
           answer[j] = rankB;
         }
         else if(count[i]==count[j]) {
-          if(answer[i]>answer[j]) {
-            eq = answer[j];
-            answer[j] = answer[i];
-            answer[i] = eq;
-          }
         }
       }
     }
@@ -54,6 +50,11 @@ public class Test {
   }
 
   public static void main(String[] args) {
+    //    if(answer[i]>answer[j]) {
+    //      eq = answer[j];
+    //      answer[j] = answer[i];
+    //      answer[i] = eq;
+    //    }
     Test t = new Test();
     int N = 5;
     int[] stages = {2, 1, 2, 6, 2, 4, 3, 3};
