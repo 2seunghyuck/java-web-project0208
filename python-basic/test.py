@@ -1,22 +1,34 @@
-from collections import Counter
+# 딥러닝을 구동하는데 필요한 케라스 함수를 불러옴
 
-print(-1 % 5)
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+import numpy as np
+import tensorflow as tf
+
+# 실행할 때마다 같은 결과를 출력하기 위해 설정하는 부분입니다.
+np.random.seed(3)
+tf.random.set_seed(3)
+
+# 준비된 수술환자 데이터를 불러들입니다.
+Data_set = np.loadtxt("/Users/user/java-web-project0208/python-basic/dataset/ThoraricSurgery.csv", delimiter=",")
+
+# 환자의 기록과 수술 결과를 X와 Y로 구분하여 저장
+X = Data_set[:, 0:17]
+Y = Data_set[:, 17]
+
+# 딥러닝 구조를 결정(모델을 설정하고 실행)
+model = Sequential()
+model.add(Dense(30, input_dim=17, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
 
 
-cities = ['서울', '부산', '인천', '대구', '대전', '광주', '울산', '수원']
-print(cities[-7:3])
+print(Data_set[:11, :])
 
+# 딥러닝 실행
 
-a = [1, 10, 5, 7, 6]
-a.sort(reverse=True)
-print(a)
+# 모델 분류가 2개이므로 binary_crossentropy를 사용, globalminimum 찾는 방식 - adam, mertics - 정확도 산출
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.fit(X, Y, epochs=100, batch_size=10)
 
-a = 10
-b = a * 10 if a % 2 == 0 else a + 10
-print(b)
-
-print("{1} {0} {2}".format('abc', 'def', 'ghi'))
-
-c = Counter('scientist')
-print(c)
-print(c['n'])
+print("\n Accuracy: %.4f" % (model.evaluate(X, Y)[1]))
