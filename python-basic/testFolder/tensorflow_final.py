@@ -1,6 +1,8 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.callbacks import ModelCheckpoint,EarlyStopping
+from sklearn.model_selection import StratifiedKFold
+
 
 import pandas as pd
 import numpy as np
@@ -13,6 +15,13 @@ df = df_pre.sample(frac=0.30)
 dataset = df.values
 X = dataset[:, 0:12].astype(float)
 Y = dataset[:, 12]
+
+skf= StratifiedKFold(n_splits=n_fold, shuffle=True)
+
+accuracy = []
+
+for train, test in skf.split(X,Y):
+
 
 model = Sequential()
 model.add(Dense(30, input_dim=12, activation='relu'))

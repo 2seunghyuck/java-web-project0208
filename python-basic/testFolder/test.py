@@ -16,4 +16,6 @@ print(df.head(5))
 print(df.tail(5))
 
 sns.pairplot(df, hue='species');
+sns.barplot(df)
+
 plt.show()
